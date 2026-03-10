@@ -1,0 +1,34 @@
+services:
+  api:
+    ports:
+      - "8080:8080"
+    image: "pulumi/service:latest@sha256:e26dd01ed66e500da7d647d0e70d9d7afff6a58d518670c98117691cbe8cdb9c"
+    env_file: service_vars.env
+    environment:
+      # AWS env vars
+      AWS_REGION:
+      AWS_PROFILE:
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
+      AWS_SESSION_TOKEN:
+      AWS_ROLE_ARN:
+      # Add any other AWS env vars you may need to provide to this container
+      # here.
+      # Search env vars
+      PULUMI_SEARCH_DOMAIN: "${PULUMI_SEARCH_DOMAIN}"
+      PULUMI_SEARCH_USER:
+      PULUMI_SEARCH_PASSWORD:
+    networks:
+      pulumi-self-hosted-installers:
+      pulumi-services:
+        aliases:
+          - pulumi-api
+    volumes:
+    # These volumes need correct write permissions for the pulumi user,
+    # so we ensure the paths have been pre-prepped if the variable is set.
+      - type: bind
+        source: ${PULUMI_LOCAL_KEYS:-/dev/null}
+        target: ${PULUMI_LOCAL_KEYS:-/dev/null}
+        bind:
+          create_host_path: false
+    restart: unless-stopped

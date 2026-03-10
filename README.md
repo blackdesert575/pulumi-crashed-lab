@@ -5,9 +5,10 @@ Play pulumi with python3 scripts to make some infra building plan on AWS
 
 * An AWS Account
 * Linux host such as Arch Linux, Debian, Ubuntu, RHEL ...etc
-* docker cli and engine installed
+* Docker installed on Linux host
     * [Install Docker Engine](https://docs.docker.com/engine/install/)
 * Build a docker container image in tools/pulumi_with_python3
+* Git
 
 ## Quick Start
 
@@ -20,3 +21,8 @@ Play pulumi with python3 scripts to make some infra building plan on AWS
 * [CDK for Terraform](https://developer.hashicorp.com/terraform/cdktf)
     * The Cloud Development Kit for Terraform is deprecated as of December 10, 2025. HashiCorp no longer supports or maintains the Cloud Development Kit for Terraform.
 * [Terragrunt](https://terragrunt.com/)
+
+## to-do-list
+
+* prepare running env
+* test pulumi running
